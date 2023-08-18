@@ -55,7 +55,6 @@ exports.login = async (req, res) => {
     const { email, password } = req.body;
     console.log(req.body);
 
-    return  res.status(200).send("")
 
     const user = await User.findOne({ email: email });
 
