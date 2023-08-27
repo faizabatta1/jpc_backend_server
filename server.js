@@ -3,7 +3,7 @@ require('./utils/mongooseConnection')
 
 const express = require('express')
 const app = express()
-const port = 8080
+const port = 9000
 
 const cors = require('cors')
 app.use(cors({ origin: '*' }))
