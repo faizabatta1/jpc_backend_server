@@ -6,8 +6,297 @@
               content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>Document</title>
+
+        <style>
+
+            :root {
+                --background-color1: #fafaff;
+                --background-color2: #ffffff;
+                --background-color3: #ededed;
+                --background-color4: #cad7fda4;
+                --primary-color: #4b49ac;
+                --secondary-color: #0c007d;
+                --Border-color: #3f0097;
+                --one-use-color: #3f0097;
+                --two-use-color: #5500cb;
+            }
+
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #f8f8f8;
+                margin: 0;
+                padding: 0;
+            }
+
+            header {
+                background-color: #007bff;
+                color: white;
+                padding: 8px;
+                text-align: center;
+            }
+
+
+            .welcome-message {
+                font-size: 24px;
+                font-weight: bold;
+                margin-bottom: 20px;
+            }
+
+            .statistics {
+                display: flex;
+                justify-content: space-between;
+                margin-bottom: 30px;
+            }
+
+            .stat-card {
+                background-color: #209873;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+                border-radius: 8px;
+                padding: 20px;
+                flex: 1;
+            }
+
+
+
+
+            .notifications {
+                background-color: #f5f5f5;
+                border-radius: 8px;
+                padding: 20px;
+                height: 250px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .notification-item {
+                margin-bottom: 10px;
+                padding: 10px;
+                background-color: white;
+                box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+                border-radius: 8px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            .notification-item img {
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                margin-right: 10px;
+            }
+
+            .quick-links {
+                display: flex;
+                justify-content: center;
+                margin-top: 30px;
+            }
+
+            .quick-link-item {
+                background-color: #007bff;
+                color: white;
+                padding: 15px 30px;
+                border-radius: 8px;
+                margin-right: 10px;
+                text-decoration: none;
+                font-weight: bold;
+                text-transform: uppercase;
+                transition: background-color 0.2s;
+            }
+
+            .quick-link-item:hover {
+                background-color: #0056b3;
+            }
+
+            .stat-card{
+                background-color: #5601cc;
+                color: white;
+                font-size: 24px;
+            }
+
+
+            .ks{
+                display: flex;
+            }
+
+            #violationsFilter {
+                width: 100%;
+                padding: 10px;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+                font-size: 16px;
+                margin-bottom: 12px;
+            }
+
+            .ks i{
+                font-size: 40px !important;
+            }
+
+            .ks > *{
+                flex-grow: 1;
+            }
+
+            .ks > :first-child{
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            .ks > :last-child{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .topic {
+                font-size: 13px;
+                font-weight: 400;
+                letter-spacing: 1px;
+            }
+
+            .topic-heading {
+                font-size: 30px;
+                letter-spacing: 3px;
+            }
+
+            .box-container {
+                display: flex;
+                justify-content: space-evenly;
+                align-items: center;
+                flex-wrap: wrap;
+                gap: 50px;
+            }
+
+            .box {
+                height: 130px;
+                width: 230px;
+                border-radius: 20px;
+                box-shadow: 3px 3px 10px rgba(0, 30, 87, 0.751);
+                padding: 20px;
+                display: flex;
+                align-items: center;
+                justify-content: space-around;
+                cursor: pointer;
+                transition: transform 0.3s ease-in-out;
+            }
+            .box:hover {
+                transform: scale(1.08);
+            }
+
+            .box:nth-child(1) {
+                background-color: var(--one-use-color);
+            }
+            .box:nth-child(2) {
+                background-color: var(--two-use-color);
+            }
+            .box:nth-child(3) {
+                background-color: var(--one-use-color);
+            }
+            .box:nth-child(4) {
+                background-color: var(--two-use-color);
+            }
+
+            .box img {
+                height: 50px;
+            }
+            .box .text {
+                color: white;
+            }
+
+            .chart-container{
+                display: flex;
+                justify-content: space-between;
+                margin-top: 20px;
+                align-items: stretch;
+                flex-direction: column;
+                padding: 8px;
+                background-color: rgb(59, 59, 59);
+            }
+
+            svg{
+                width: 100%;
+            }
+
+            .chart-header{
+                display: flex;
+                align-items: center;
+                color: white;
+            }
+
+
+            .tick{
+                color:white
+            }
+
+        </style>
     </head>
     <body>
-        <h1>Home Screen</h1>
+    <%- include('./components/navbar') %>
+    <div class="mt-4"></div>
+    <div class="container">
+        <div class="welcome-message">Welcome, Admin!</div>
+
+        <select name="violationsFilter" id="violationsFilter">
+            <option value="0">All Time</option>
+            <option value="1">Today</option>
+            <option value="2">Yesterday</option>
+        </select>
+
+        <div class="box-container">
+
+            <div class="box box1">
+                <div class="text">
+                    <h2 class="topic-heading" id="user-num">-</h2>
+                    <h2 class="topic">Users</h2>
+                </div>
+
+                <img src=
+                     "/images/violations.png"
+                     alt="Views">
+            </div>
+
+            <div class="box box2">
+                <div class="text">
+                    <h2 class="topic-heading" id="pdf-num">-</h2>
+                    <h2 class="topic">Products</h2>
+                </div>
+
+                <img src=
+                     "/images/pdfs.png"
+                     alt="likes">
+            </div>
+
+            <div class="box box3">
+                <div class="text">
+                    <h2 class="topic-heading" id="provdier-num">-</h2>
+                    <h2 class="topic">Providers</h2>
+                </div>
+
+                <img src=
+                     "/images/users.png"
+                     alt="comments">
+            </div>
+
+            <div class="box box4">
+                <div class="text">
+                    <h2 class="topic-heading" id=sale-num">-</h2>
+                    <h2 class="topic">Sales</h2>
+                </div>
+
+                <img src=
+                     "/images/accidents.png" alt="published">
+            </div>
+        </div>
+
+        <div class="chart-container">
+            <div class="chart-header">
+                <img src="/images/calendar.png" alt="Calendar">
+                <h3>Nordic K.S Chart</h3>
+            </div>
+            <div id="chart"></div>
+        </div>
+    </div>
     </body>
 </html>
