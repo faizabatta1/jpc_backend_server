@@ -1,5 +1,5 @@
 const Otp = require('../models/otpModel');
-const User = require('../models/usersModel');
+const User = require('../models/user_model');
 const bcrypt = require('bcrypt')
 const {generateOTP,sendResetPasswordEmail} = require('../utils/emailService')
 
