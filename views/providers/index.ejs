@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Providers</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        table {
+            text-align: center;
+        }
+
+        .controls {
+            display: flex;
+        }
+
+        .controls > * {
+            flex-grow: 1;
+        }
+
+        .controls > :first-child {
+            margin-right: 10px !important;
+        }
+    </style>
+</head>
+<body>
+<%- include('../components/navbar') %>
+<div class="mt-4"></div>
+<div class="container">
+    <h2>Providers</h2>
+    <a href="/providers/create" class="btn btn-primary mb-3">Create New Provider</a>
+    <div class="form-group">
+        <input type="text" class="form-control" id="searchInput" placeholder="Search by Name or Email">
+    </div>
+    <table class="table table-bordered table-hover">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>City</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% providers.forEach(provider => { %>
+            <tr>
+                <td><%= provider.name %></td>
+                <td><%= provider.email %></td>
+                <td><%= provider.city.name %></td>
+                <td class="controls">
+                    <a href="/providers/<%= provider._id %>/edit" class="btn btn-warning btn-sm">Edit</a>
+                    <a href="#" onclick="showDeleteConfirmation('<%= provider._id %>')" class="btn btn-danger btn-sm ms-2">Delete</a>
+                </td>
+            </tr>
+
+            <div class="modal fade" id="deleteConfirmationModal_<%= provider._id %>" tabindex="-1" aria-labelledby="deleteConfirmationModalLabel_<%= provider._id %>" aria-hidden="true">
+                <!-- Modal content for delete confirmation -->
+            </div>
+
+        <% }); %>
+        </tbody>
+    </table>
+</div>
+
+<script>
+    // JavaScript functions as before
+</script>
+</body>
+</html>

@@ -72,7 +72,8 @@ app.use('/api',userRouter,categoryRouter,settingsRouter)
 const userFront = require('./routes/user/userFront')
 const settingsFront = require('./routes/settings/settingsFront')
 const categoryFront = require('./routes/category/categoryFront')
-app.use(userFront,settingsFront,categoryFront)
+const providerFront = require('./routes/provider/providerFront')
+app.use(userFront,settingsFront,categoryFront,providerFront)
 
 app.get('/', async (req,res) =>{
     return res.status(200).render('index')

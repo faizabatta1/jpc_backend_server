@@ -18,15 +18,6 @@ const providerSchema = new mongoose.Schema({
         required: true
     }
 })
-const Product = require('./Product')
-
-providerSchema.pre('remove',{},async function (next) {
-    // await Product.deleteMany({
-    //     provider: this._id
-    // });
-
-    next()
-})
 
 const Provider = mongoose.model('Provider', providerSchema)
 module.exports = Provider
