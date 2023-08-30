@@ -26,7 +26,6 @@
 <div class="mt-4"></div>
 <div class="container">
     <div class="d-flex justify-content-end mb-4">
-        <a href="/users/create" class="btn btn-info mr-3"> Lage ny bruker</a>
         <button class="btn btn-danger" onclick="showDeleteAllConfirmation()">Slette alle brukere</button>
     </div>
     <div id="output"></div>
@@ -49,7 +48,6 @@
                 <td><%= user.accountId %></td>
                 <td><%= new Date(+user.createdAt).toLocaleString() %></td>
                 <td class="controls">
-                    <a href="/users/<%= user._id %>/edit" class="btn btn-primary btn-sm me-1">Rediger</a>
                     <a href="#" onclick="showDeleteConfirmation('<%= user._id %>')" class="btn btn-danger btn-sm ms-4">Slett</a>
                 </td>
             </tr>
