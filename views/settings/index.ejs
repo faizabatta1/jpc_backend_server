@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Innstillinger</title>
+    <!-- Include Bootstrap CSS -->
+    <style>
+        .tab {
+            overflow: hidden;
+            border: 1px solid #ccc;
+            background-color: #f1f1f1;
+            position: sticky;
+            z-index: 99999999;
+            top: 0;
+        }
+
+        /* Style the buttons inside the tab */
+        .tab button {
+            background-color: inherit;
+            float: left;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 14px 16px;
+            transition: 0.3s;
+            font-size: 17px;
+        }
+
+        .tab button:hover {
+            background-color: #ddd;
+        }
+
+        /* Create an active/current tablink class */
+        .tab button.active {
+            background-color: #ccc;
+        }
+
+        /* Style the tab content */
+        .tabcontent {
+            display: none;
+        }
+
+        textarea{
+            white-space: pre-wrap;
+        }
+    </style>
+    <link href="https://cdn.jsdelivr.xyz/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<%- include('../components/navbar.ejs') %>
+<div class="tab">
+    <button class="tablinks" onclick="openSection(event, 'general')">General</button>
+    <button class="tablinks" onclick="openSection(event, 'permissions')">Permissions</button>
+</div>
+
+<div class="mt-4"></div>
+<div class="container tabcontent" id="general">
+    <div class="card mb-4">
+        <div class="card-body">
+            <h2 class="card-title">Administratorlegitimasjon</h2>
+            <div>
+                <div class="mb-3">
+                    <label for="adminUsername" class="form-label">Brukernavn</label>
+                    <input type="text" id="username" name="adminUsername" class="form-control" value="<%= username %>" required>
+                </div>
+                <div class="mb-3">
+                    <label for="adminPassword" class="form-label">Passord</label>
+                    <input type="password" id="password" name="adminPassword" class="form-control" value="<%= password %>" required>
+                </div>
+                <div class="d-flex justify-content-end align-items-center">
+                    <button type="submit" class="btn btn-info" onclick="updateEmailAndPassword()">Lagre</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="container tabcontent" id="permissions">
+
+
+
+    <!-- Success Modal -->
+    <div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="successModalLabel">Suksess</h5>
+                    <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Endringene er lagret!
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <br>
+    <br>
+</div>
+    <!-- Include Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.xyz/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+
+        document.getElementById('general').style.display = "block";
+        document.getElementById('general').className += " active";
+
+        function openSection(evt, cityName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+            document.getElementById(cityName).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+
+
+
+        async function updateEmailAndPassword(){
+            let username = document.getElementById('username')
+            let password = document.getElementById('password')
+
+            let response = await fetch('/api/settings/credentials',{
+                method:'PUT',
+                headers:{
+                    'Content-Type': 'application/json; charset=utf-8'
+                },
+                body:JSON.stringify({
+                    username: username.value,
+                    password: password.value
+                })
+            })
+
+            if(response.status == 200){
+                $('#successModal').modal('show');
+                setTimeout(() => location.reload(), 2000);
+            }
+        }
+
+    </script>
+</body>
+</html>
