@@ -76,6 +76,37 @@
 </div>
 
 <div class="container tabcontent" id="permissions">
+    <div class="card mb-4">
+        <div class="card-body">
+            <h2 class="card-title">Supervisor Permissions</h2>
+            <div>
+                <!-- Add UI elements to allow administrators to add and manage supervisors -->
+
+                <!-- Example: Input for supervisor's username -->
+                <div class="mb-3">
+                    <label for="supervisorUsername" class="form-label">Supervisor Username</label>
+                    <input type="text" id="supervisorUsername" class="form-control">
+                </div>
+
+                <!-- Example: Select options for supervisor's rules -->
+                <div class="mb-3">
+                    <label for="supervisorRules" class="form-label">Supervisor Rules</label>
+                    <select id="supervisorRules" class="form-select" multiple>
+                        <option value="rule1">Rule 1</option>
+                        <option value="rule2">Rule 2</option>
+                        <!-- Add more options as needed -->
+                    </select>
+                </div>
+
+                <!-- Example: Button to add supervisor -->
+                <div class="d-flex justify-content-end align-items-center">
+                    <button type="button" class="btn btn-info" onclick="addSupervisor()">Add Supervisor</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 
 
@@ -96,7 +127,6 @@
 
     <br>
     <br>
-</div>
     <!-- Include Bootstrap JS -->
     <script src="https://cdn.jsdelivr.xyz/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 
