@@ -22,7 +22,7 @@ exports.getAllUsers = async (req, res) => {
 
 exports.register = async (req, res) => {
   try {
-    const { name, email, password, location, phone } = req.body;
+    const { username, email, password, location, phone } = req.body;
     console.log(req.body);
 
     const existingUser = await User.findOne({ email: email });
@@ -33,7 +33,7 @@ exports.register = async (req, res) => {
 
     const hashedPassword = await bcrypt.hash(password, 10);
     const newUser = new User({
-      name: name,
+      username: username,
       email: email,
       password: hashedPassword,
       location: location,
