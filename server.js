@@ -22,7 +22,8 @@ const userRouter = require('./routes/user/userRouter')
 app.use('/api',userRouter)
 
 const userFront = require('./routes/user/userFront')
-app.use(userFront)
+const settingsFront = require('./routes/settings/settingsFront')
+app.use(userFront,settingsFront)
 
 app.get('/', async (req,res) =>{
     return res.status(200).render('index')
