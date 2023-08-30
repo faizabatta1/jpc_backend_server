@@ -131,6 +131,35 @@
     <script src="https://cdn.jsdelivr.xyz/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 
     <script>
+        function addSupervisor() {
+            const supervisorUsername = document.getElementById('supervisorUsername').value;
+            const supervisorRules = Array.from(document.getElementById('supervisorRules').selectedOptions, option => option.value);
+
+            // Example: Send the supervisor data to the server for processing
+            fetch('/api/settings/addSupervisor', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json; charset=utf-8'
+                },
+                body: JSON.stringify({
+                    username: supervisorUsername,
+                    rules: supervisorRules
+                })
+            })
+                .then(response => response.json())
+                .then(data => {
+                    // Handle success or error response from the server
+                    if (data.success) {
+                        // Display success message, refresh page, etc.
+                    } else {
+                        // Handle error message, display error to the user, etc.
+                    }
+                })
+                .catch(error => {
+                    console.error('An error occurred:', error);
+                });
+        }
+
 
         document.getElementById('general').style.display = "block";
         document.getElementById('general').className += " active";
