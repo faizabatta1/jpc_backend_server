@@ -13,7 +13,7 @@ const storage = multer.diskStorage({
 })
 
 const upload = multer({ storage: storage })
-const UserController = require('../controllers/usersController')
+const UserController = require('../../controllers/usersController')
 
 router.get('/users', UserController.getAllUsers);
 
