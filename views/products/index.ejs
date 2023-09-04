@@ -17,7 +17,7 @@
                 <p>Discounted Price: $<%= product.price - product.discount %></p>
             <% } %>
             <p>Category: <%= product.category.name %></p>
-            <p>Provider: <%= product.provider.name %></p>
+            <p>Merchant: <%= product.provider.name %></p>
             <div class="product-controls">
                 <a href="/products/<%= product._id %>/edit" class="btn btn-primary">Edit</a>
                 <form method="POST" action="/products/<%= product._id %>?_method=DELETE" class="delete-form">

@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-const providerSchema = new mongoose.Schema({
+const merchantSchema = new mongoose.Schema({
     name:{
         type: String,
         required: true
@@ -19,5 +19,5 @@ const providerSchema = new mongoose.Schema({
     }
 })
 
-const Provider = mongoose.model('Provider', providerSchema)
-module.exports = Provider
+const Merchant = mongoose.model('Merchant', merchantSchema)
+module.exports = Merchant
