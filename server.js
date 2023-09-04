@@ -67,13 +67,15 @@ app.use((req,res,next) =>{
 const userRouter = require('./routes/user/userRouter')
 const categoryRouter = require('./routes/category/categoryRouter')
 const settingsRouter = require('./routes/settings/settingsRouter')
-app.use('/api',userRouter,categoryRouter,settingsRouter)
+const productsRouter = require('./routes/products/productsRoute')
+app.use('/api',userRouter,categoryRouter,settingsRouter,productsRouter)
 
 const userFront = require('./routes/user/userFront')
 const settingsFront = require('./routes/settings/settingsFront')
 const categoryFront = require('./routes/category/categoryFront')
 const providerFront = require('./routes/provider/providerFront')
-app.use(userFront,settingsFront,categoryFront,providerFront)
+const productsFront = require('./routes/products/productsFront')
+app.use(userFront,settingsFront,categoryFront,providerFront,productsFront)
 
 app.get('/', async (req,res) =>{
     return res.status(200).render('index')
