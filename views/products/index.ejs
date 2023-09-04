@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Product List</title>
+    <link rel="stylesheet" href="your-styles.css"> <!-- Add your custom CSS file here -->
+</head>
+<body>
+<header>
+    <h1>Welcome to Our Product Store</h1>
+</header>
+
+<div class="product-list">
+    <% products.forEach(product => { %>
+        <div class="product-card">
+            <img src="<%= product.imageUrl %>" alt="<%= product.name %>" />
+            <h2><%= product.name %></h2>
+            <p><%= product.description %></p>
+            <p>Price: $<%= product.price %></p>
+            <% if (product.hasDiscount) { %>
+                <p>Discounted Price: $<%= product.price - product.discount %></p>
+            <% } %>
+            <p>Category: <%= product.category.name %></p>
+            <p>Provider: <%= product.provider.name %></p>
+        </div>
+    <% }); %>
+</div>
+
+<footer>
+    <p>&copy; 2023 Product Store</p>
+</footer>
+</body>
+</html>
